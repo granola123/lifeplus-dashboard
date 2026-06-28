@@ -96,6 +96,21 @@
   }
   .loginField:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);background:#fff}
   .loginerr{color:var(--neg);font-size:12px;font-weight:600;margin:-2px 0 8px}
+  /* 드롭다운 */
+  .dropdown-wrap{display:inline-block}
+  .dropdown-menu{
+    position:absolute;top:calc(100% + 6px);left:0;z-index:50;
+    background:#fff;border:1px solid var(--line-strong);border-radius:10px;
+    box-shadow:0 8px 24px rgba(0,0,0,.12);min-width:130px;
+    padding:4px;display:none;flex-direction:column;gap:2px;
+  }
+  .dropdown-menu.open{display:flex}
+  .dropdown-item{
+    font:inherit;font-size:13px;font-weight:600;cursor:pointer;text-align:left;
+    border:none;background:transparent;color:var(--ink);padding:8px 12px;border-radius:7px;
+    transition:.1s;white-space:nowrap;
+  }
+  .dropdown-item:hover{background:var(--accent-soft);color:var(--accent-deep)}
   button.ytbtn{background:#FF0000;border-color:#CC0000;color:#fff}
   button.ytbtn:hover{background:#CC0000;border-color:#AA0000}
   button.ytbtn:disabled{background:#ffaaaa;border-color:#ffaaaa;cursor:not-allowed}
@@ -162,6 +177,102 @@
   }
   td.avgcell span{display:block}
   tbody tr:nth-child(even) td.avgcell{background:#EEF5F0}
+
+  /* 행 저장/잠금 버튼 */
+  td.savecell{
+    background:var(--surface);border-left:1px solid var(--line-strong);
+    padding:6px 8px;text-align:center;min-width:70px;vertical-align:middle;
+  }
+  tbody tr:nth-child(even) td.savecell{background:#FCFBF8}
+  thead th.savecol{background:var(--head);min-width:70px;font-size:11px;color:var(--muted);font-weight:600}
+  .row-save-btn{
+    font:inherit;font-size:11px;font-weight:700;cursor:pointer;
+    border:1px solid var(--accent);background:var(--accent-soft);color:var(--accent-deep);
+    padding:4px 8px;border-radius:6px;white-space:nowrap;transition:.12s;
+  }
+  .row-save-btn:hover{background:var(--accent);color:#fff}
+  .row-locked-badge{
+    font-size:10.5px;font-weight:700;color:#1E5C3E;background:#E3F5EC;
+    padding:3px 7px;border-radius:6px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;
+  }
+  .row-unlock-btn{
+    font:inherit;font-size:10px;font-weight:700;cursor:pointer;
+    border:1px solid var(--line-strong);background:#fff;color:var(--muted);
+    padding:3px 6px;border-radius:5px;margin-top:3px;width:100%;transition:.12s;
+  }
+  .row-unlock-btn:hover{border-color:var(--neg);color:var(--neg)}
+  td.cell.rowlocked input{background:#F8F7F4;color:#6E6A62;cursor:not-allowed}
+
+  /* 누적 이력 테이블 */
+  .history-section{margin-top:28px;padding-top:20px;border-top:2px solid var(--line-strong)}
+  .history-title{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .history-title::before{content:"";width:16px;height:2px;background:var(--faint);border-radius:2px}
+  .history-scroll{overflow-x:auto}
+  .history-table{border-collapse:separate;border-spacing:0;width:100%;font-size:12px;min-width:500px}
+  .history-table th{background:#F4F2EE;font-weight:700;font-size:11px;color:var(--muted);padding:7px 10px;border-bottom:1px solid var(--line-strong);border-right:1px solid var(--line);text-align:center;white-space:nowrap}
+  .history-table th:first-child{text-align:left;position:sticky;left:0;background:#F4F2EE;z-index:2}
+  .history-table td{padding:7px 10px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+  .history-table td:first-child{text-align:left;font-family:inherit;font-weight:600;position:sticky;left:0;background:#fff;z-index:1}
+  .history-table tr:last-child td{border-bottom:none}
+  .history-table .deleted-col{color:#BDB9B0;background:#F7F6F3}
+  .hist-deleted{color:#BDB9B0!important;background:#F7F6F3!important}
+
+  /* 평균 요약 테이블 */
+  .avg-section{margin-top:28px;padding-top:20px;border-top:2px solid var(--line-strong)}
+  .avg-section-title{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .avg-section-title::before{content:"";width:16px;height:2px;background:var(--accent);border-radius:2px}
+  .avg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:4px}
+  .avg-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+  .avg-card-title{font-size:12px;font-weight:800;color:var(--accent-deep);letter-spacing:.04em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .avg-card-title::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);flex:none}
+  .avg-table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px}
+  .avg-table th{background:#F9F8F5;font-weight:700;font-size:11px;color:var(--muted);padding:6px 10px;border-bottom:1px solid var(--line-strong);border-right:1px solid var(--line);text-align:center;white-space:nowrap}
+  .avg-table th:first-child{text-align:left;border-radius:8px 0 0 0}
+  .avg-table th:last-child{border-right:none;border-radius:0 8px 0 0}
+  .avg-table td{padding:7px 10px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-family:inherit;font-variant-numeric:tabular-nums}
+  .avg-table td:first-child{text-align:left;font-weight:600;color:var(--ink);border-right:1px solid var(--line-strong)}
+  .avg-table td:last-child{border-right:none}
+  .avg-table tr:last-child td{border-bottom:none}
+  .avg-table .avg-val{font-weight:700;color:#1E5C3E}
+  .avg-table .q-avg{background:#F0F7F2;font-weight:700;color:#1E5C3E}
+  @media(max-width:768px){.avg-grid{grid-template-columns:1fr}}
+  .restore-btn{
+    font:inherit;font-size:10px;font-weight:700;cursor:pointer;margin-top:4px;
+    border:1px solid #1E7A4C;background:#E8F5EE;color:#1E7A4C;
+    padding:2px 7px;border-radius:5px;display:inline-block;transition:.12s;white-space:nowrap;
+  }
+  .restore-btn:hover{background:#1E7A4C;color:#fff}
+
+  /* 모바일 */
+  @media(max-width:768px){
+    body{padding:12px 8px 60px}
+    .wrap{max-width:100%}
+    header.hd{flex-direction:column;gap:10px}
+    .statusbox{width:100%}
+    h1{font-size:18px}
+    .eyebrow{font-size:10px}
+    .viewtoggle button{padding:6px 12px;font-size:12px}
+    .toolbar{gap:5px}
+    .btn{padding:7px 10px;font-size:12px}
+    .btn .ic{font-size:12px}
+    .tablescroll{-webkit-overflow-scrolling:touch}
+    table{min-width:520px}
+    thead th.metric{min-width:130px;font-size:11px}
+    td.metric{padding:8px 10px}
+    .metricwrap .mname{font-size:12px}
+    td.cell input{font-size:12px;padding:9px 4px}
+    td.avgcell{font-size:12px;padding:8px 5px}
+    td.savecell{padding:5px 4px;min-width:58px}
+    .row-save-btn{font-size:10px;padding:3px 5px}
+    .row-locked-badge{font-size:9.5px;padding:2px 5px}
+    .chartcard{padding:14px 12px}
+    .chartbody{grid-template-columns:1fr}
+    .chartplot{border-right:none;border-bottom:1px solid var(--line);padding-bottom:10px}
+    .charttable{padding:10px 0 0}
+    .clatest .cval{font-size:22px}
+    .lockbanner{font-size:11.5px;padding:8px 10px}
+    .history-section{margin-top:18px}
+  }
 
   td.cell input{
     border:none;background:transparent;font-family:var(--mono);font-size:13px;color:var(--ink);
@@ -311,14 +422,25 @@
 
   <div class="toolbar" id="toolbar">
     <button class="btn primary" id="copyBtn"><span class="ic">⧉</span> 회신용 표 복사</button>
-    <button class="btn adminonly" id="addWeekBtn" style="display:none"><span class="ic">＋</span> 주차 추가</button>
-    <button class="btn adminonly" id="addQuarterBtn" style="display:none"><span class="ic">＋</span> 분기 추가</button>
+    <div class="adminonly dropdown-wrap" id="addWeekWrap" style="display:none;position:relative">
+      <button class="btn" id="addWeekBtn">＋ 주차 ▾</button>
+      <div class="dropdown-menu" id="addWeekMenu">
+        <button class="dropdown-item" data-action="week-before">◀ 앞에 추가</button>
+        <button class="dropdown-item" data-action="week-after">▶ 뒤에 추가</button>
+      </div>
+    </div>
+    <div class="adminonly dropdown-wrap" id="addQuarterWrap" style="display:none;position:relative">
+      <button class="btn" id="addQuarterBtn">＋ 분기 ▾</button>
+      <div class="dropdown-menu" id="addQuarterMenu">
+        <button class="dropdown-item" data-action="quarter-before">◀ 앞에 추가</button>
+        <button class="dropdown-item" data-action="quarter-after">▶ 뒤에 추가</button>
+      </div>
+    </div>
     <button class="btn adminonly" id="lockBtn" style="display:none"><span class="ic">🔒</span> 잠금</button>
     <button class="btn adminonly" id="ytForceBtn" style="display:none; font-size:11.5px">▶ YT 강제 업데이트</button>
     <button class="btn adminonly" id="sheetSyncBtn" style="display:none; font-size:11.5px">📊 시트 동기화</button>
     <div class="spacer"></div>
     <button class="btn adminonly" id="syncBtn" style="display:none"><span class="ic">⇄</span> 데이터 공유코드</button>
-    <button class="btn ghost adminonly" id="resetBtn" style="display:none">초기화</button>
   </div>
 
   <div id="lockbanner" class="lockbanner hidden"></div>
@@ -403,6 +525,8 @@ const DEFAULT={
   ],
   values:{},
   locked:false,
+  rowLocks:{},
+  deletedColumns:[],
   meta:{lastEditedBy:"",lastEditedAt:null}
 };
 
@@ -553,31 +677,52 @@ function render(){
   const thA=document.createElement("th");
   thA.className="avgcol";thA.id="avghead";thA.textContent=info.label;
   hr.appendChild(thA);
+  // 저장 열 헤더
+  const thS=document.createElement("th");
+  thS.className="savecol";thS.textContent="저장";
+  hr.appendChild(thS);
 
-  // body — 구분은 고정 텍스트(편집/삭제 불가)
+  // body
   const tb=$("#body");tb.innerHTML="";
   state.indicators.forEach(ind=>{
     const tr=document.createElement("tr");
+    const rowLocked=!!(state.rowLocks&&state.rowLocks[ind.id]);
     const tdM=document.createElement("td");
     tdM.className="metric";
     tdM.innerHTML=`<div class="metricwrap"><span class="mname">${escAttr(ind.name)}</span></div>`;
     tr.appendChild(tdM);
     state.columns.forEach(col=>{
       const td=document.createElement("td");
-      const lockedNow=isLockableCol(col)&&state.locked&&!isAdmin;
-      td.className="cell"+(col.kind==="week"?" weekcell":(col.kind==="quarter"?" qcell":""))+(lockedNow?" lockedcell":"");
+      const lockedByAdmin=isLockableCol(col)&&state.locked&&!isAdmin;
+      const lockedByRow=rowLocked&&!isAdmin;
+      const isLocked=lockedByAdmin||lockedByRow;
+      td.className="cell"+(col.kind==="week"?" weekcell":(col.kind==="quarter"?" qcell":""))
+        +(isLockableCol(col)&&state.locked?" lockedcell":"")
+        +(rowLocked?" rowlocked":"");
       const v=(state.values[ind.id]&&state.values[ind.id][col.id])||"";
-      td.innerHTML=`<input ${cellEditable(col)?"":"readonly"} value="${escAttr(groupNumberStr(v))}" data-v="${ind.id}|${col.id}" placeholder="–" inputmode="decimal" />`;
+      td.innerHTML=`<input ${(cellEditable(col)&&!lockedByRow)?"":"readonly"} value="${escAttr(groupNumberStr(v))}" data-v="${ind.id}|${col.id}" placeholder="–" inputmode="decimal" />`;
       tr.appendChild(td);
     });
+    // 월 평균
     const tdA=document.createElement("td");
     tdA.className="avgcell";
     tdA.innerHTML=`<span id="avg_${ind.id}">${escAttr(fmtAvg(rowAvg(ind.id,info.cols)))}</span>`;
     tr.appendChild(tdA);
+    // 저장/잠금 버튼
+    const tdS=document.createElement("td");
+    tdS.className="savecell";
+    if(rowLocked){
+      tdS.innerHTML=`<div class="row-locked-badge">🔒 저장됨</div>`+
+        (isAdmin?`<button class="row-unlock-btn" data-unlock="${ind.id}">잠금 해제</button>`:"");
+    }else{
+      tdS.innerHTML=`<button class="row-save-btn" data-saverow="${ind.id}">저장</button>`;
+    }
+    tr.appendChild(tdS);
     tb.appendChild(tr);
   });
   bindInputs();
   renderEdited();
+  renderHistory();
 }
 function escAttr(s){return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");}
 
@@ -601,11 +746,252 @@ function bindInputs(){
         scheduleSave();}
     };
   });
+  // 열 삭제 — 관리자만, 삭제 전 이력 보존
   document.querySelectorAll('[data-delcol]').forEach(b=>{
-    b.onclick=()=>{state.columns=state.columns.filter(c=>c.id!==b.dataset.delcol);render();scheduleSave();};
+    b.onclick=()=>{
+      if(!isAdmin)return;
+      const colId=b.dataset.delcol;
+      const col=state.columns.find(c=>c.id===colId);
+      if(!col)return;
+      // deletedColumns에 열 라벨 + 각 지표 값 보존
+      const snap={id:colId,label:col.label,kind:col.kind,deletedAt:Date.now(),values:{}};
+      state.indicators.forEach(ind=>{snap.values[ind.id]=(state.values[ind.id]&&state.values[ind.id][colId])||"";});
+      if(!state.deletedColumns)state.deletedColumns=[];
+      state.deletedColumns.push(snap);
+      state.columns=state.columns.filter(c=>c.id!==colId);
+      render();scheduleSave();
+      toast(`"${col.label}" 열을 삭제했습니다. 누적 이력에 보존됩니다.`);
+    };
+  });
+  // 행 저장 버튼
+  document.querySelectorAll('[data-saverow]').forEach(b=>{
+    b.onclick=()=>{
+      const iid=b.dataset.saverow;
+      if(!state.rowLocks)state.rowLocks={};
+      state.rowLocks[iid]=true;
+      render();scheduleSave();
+      toast("저장됨 — 수정이 잠겼습니다");
+    };
+  });
+  // 행 잠금 해제 (관리자 전용)
+  document.querySelectorAll('[data-unlock]').forEach(b=>{
+    b.onclick=()=>{
+      if(!isAdmin)return;
+      const iid=b.dataset.unlock;
+      if(state.rowLocks)delete state.rowLocks[iid];
+      render();scheduleSave();
+      toast("잠금이 해제됐습니다");
+    };
   });
 }
 
+/* ---------- 열 복구 ---------- */
+function restoreColumn(colId){
+  const idx=(state.deletedColumns||[]).findIndex(c=>c.id===colId);
+  if(idx<0){toast("복구할 열을 찾을 수 없습니다.");return;}
+  const snap=state.deletedColumns[idx];
+
+  /* state.columns에 삽입 — 원래 kind 복원, 주차 열 맨 끝에 추가 */
+  const restoredCol={id:snap.id,label:snap.label,kind:snap.kind};
+  /* 같은 kind의 마지막 열 뒤에 삽입 */
+  let insertAt=state.columns.length;
+  for(let i=state.columns.length-1;i>=0;i--){
+    if(state.columns[i].kind===snap.kind){insertAt=i+1;break;}
+    if(snap.kind==="week"&&state.columns[i].kind==="quarter"){insertAt=i+1;break;}
+  }
+  state.columns.splice(insertAt,0,restoredCol);
+
+  /* 각 지표 값 복원 */
+  Object.entries(snap.values).forEach(([indId,v])=>{
+    if(!state.values[indId])state.values[indId]={};
+    if(v)state.values[indId][colId]=v;
+  });
+
+  /* deletedColumns에서 제거 */
+  state.deletedColumns.splice(idx,1);
+
+  render();scheduleSave();
+  toast(`"${snap.label}" 열이 복구됐습니다`);
+}
+
+/* ---------- 월별·분기별 평균 요약 표 ---------- */
+function buildAvgSummary(){
+  const weeks=state.columns.filter(c=>c.kind==="week");
+  const quarters=state.columns.filter(c=>c.kind==="quarter");
+
+  /* 월별 그룹핑 */
+  const monthMap={};
+  weeks.forEach(c=>{
+    const m=c.label.match(/(\d+)\s*월/);
+    if(!m)return;
+    const mo=+m[1];
+    if(!monthMap[mo])monthMap[mo]=[];
+    monthMap[mo].push(c);
+  });
+
+  const months=Object.keys(monthMap).map(Number).sort((a,b)=>a-b);
+
+  /* 표 카드: 지표별로 월 평균 + 분기값 + 분기 평균 */
+  return state.indicators.map(ind=>{
+    const vals=state.values[ind.id]||{};
+
+    /* 헤더: 월 컬럼들 + 분기 컬럼들 */
+    const monthCols=months.map(mo=>({label:`${mo}월 평균`,cols:monthMap[mo]}));
+    const qCols=quarters.map(q=>({label:q.label,val:vals[q.id]||""}));
+    const hasMonths=monthCols.length>0;
+    const hasQ=qCols.length>0;
+    if(!hasMonths&&!hasQ)return"";
+
+    let thead=`<tr><th>구분</th>`;
+    if(hasMonths)monthCols.forEach(mc=>thead+=`<th>${escAttr(mc.label)}</th>`);
+    if(hasQ)qCols.forEach(qc=>thead+=`<th>${escAttr(qc.label)}</th>`);
+    thead+=`</tr>`;
+
+    /* 연간 목표 행 */
+    const targetCol=state.columns.find(c=>c.kind==="target");
+    const targetVal=targetCol?(vals[targetCol.id]||""):"";
+
+    /* 주차 상세 행 (월별) */
+    let tbodyRows="";
+
+    /* 지표 평균 행 */
+    let avgRow=`<tr><td class="avg-val">📊 평균</td>`;
+    if(hasMonths){
+      monthCols.forEach(mc=>{
+        const avg=rowAvg(ind.id,mc.cols);
+        avgRow+=`<td class="avg-val">${fmtAvg(avg)}</td>`;
+      });
+    }
+    if(hasQ){
+      qCols.forEach(qc=>{
+        avgRow+=`<td class="q-avg">${escAttr(qc.val||"–")}</td>`;
+      });
+    }
+    avgRow+=`</tr>`;
+
+    /* 주차별 상세 행 */
+    weeks.forEach(wc=>{
+      const wm=wc.label.match(/(\d+)\s*월/);
+      const v=vals[wc.id]||"";
+      let row=`<tr><td style="color:var(--muted);font-weight:500">${escAttr(wc.label)}</td>`;
+      if(hasMonths){
+        monthCols.forEach(mc=>{
+          /* 이 월에 해당하는 주차만 값 표시 */
+          const belongs=mc.cols.some(c=>c.id===wc.id);
+          row+=`<td>${belongs?(escAttr(v)||"–"):''}</td>`;
+        });
+      }
+      if(hasQ)qCols.forEach(()=>row+=`<td></td>`);
+      row+=`</tr>`;
+      tbodyRows+=row;
+    });
+
+    return`<div class="avg-card">
+      <div class="avg-card-title">${escAttr(ind.name)}</div>
+      ${targetVal?`<div style="font-size:11px;color:var(--muted);margin-bottom:8px">연간목표: <b style="color:var(--ink)">${escAttr(targetVal)}</b></div>`:""}
+      <div style="overflow-x:auto">
+        <table class="avg-table">
+          <thead>${thead}</thead>
+          <tbody>${avgRow}${tbodyRows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function renderAvgSection(){
+  let host=document.getElementById("avgSection");
+  if(!host){
+    host=document.createElement("div");
+    host.id="avgSection";
+    host.className="avg-section";
+    const chartView=document.getElementById("chartview");
+    if(chartView)chartView.appendChild(host);
+  }
+  const cards=buildAvgSummary();
+  if(!cards){host.innerHTML="";return;}
+  host.innerHTML=`
+    <div class="avg-section-title">월별 · 분기별 평균 요약</div>
+    <div class="avg-grid">${cards}</div>`;
+}
+
+/* ---------- 관리자 누적 이력 표 ---------- */
+function renderHistory(){
+  let host=document.getElementById("historySection");
+  if(!host){
+    host=document.createElement("div");
+    host.id="historySection";
+    host.className="history-section";
+    const tc=document.getElementById("tablecard");
+    if(tc)tc.after(host);
+  }
+  /* 관리자만 표시 */
+  if(!isAdmin){host.innerHTML="";return;}
+
+  /* 현재 열 + 삭제된 열 시간순 정렬 */
+  const allCols=[
+    ...state.columns.filter(c=>c.kind==="week"||c.kind==="quarter").map(c=>({...c,deleted:false})),
+    ...(state.deletedColumns||[]).filter(c=>c.kind==="week"||c.kind==="quarter").map(c=>({...c,deleted:true}))
+  ];
+  /* 월-주 순서로 정렬 */
+  allCols.sort((a,b)=>{
+    const parse=l=>{const m=String(l).match(/(\d+)[월Q].*?(\d+)/);return m?+m[1]*100+ +m[2]:0;};
+    return parse(a.label)-parse(b.label);
+  });
+
+  if(!allCols.length){host.innerHTML="";return;}
+
+  const ai=avgInfo();
+
+  let thead=`<tr>
+    <th style="text-align:left;min-width:180px;position:sticky;left:0;background:#F4F2EE;z-index:3">구분</th>
+    ${allCols.map(c=>`<th class="${c.deleted?"hist-deleted":""}">
+      ${escAttr(c.label)}
+      ${c.deleted?`<br><button class="restore-btn" data-restore="${c.id}" title="${escAttr(c.label)} 복구">↩ 복구</button>`:''}
+    </th>`).join("")}
+    <th style="background:#EDF5F0;color:#1E5C3E;min-width:80px">${escAttr(ai.label)}</th>
+  </tr>`;
+
+  let tbody=state.indicators.map(ind=>{
+    const vals=state.values[ind.id]||{};
+    const cells=allCols.map(c=>{
+      let v="";
+      if(c.deleted){
+        /* 삭제된 열은 deletedColumns에서 값 조회 */
+        const snap=(state.deletedColumns||[]).find(d=>d.id===c.id);
+        v=snap?snap.values[ind.id]||"":"";
+      }else{
+        v=vals[c.id]||"";
+      }
+      return`<td class="${c.deleted?"hist-deleted":""}">${escAttr(v||"–")}</td>`;
+    }).join("");
+    /* 현재 주차 열만 월 평균 계산 */
+    const avg=fmtAvg(rowAvg(ind.id,ai.cols));
+    return`<tr>
+      <td style="text-align:left;font-weight:600;position:sticky;left:0;background:#fff;z-index:1">${escAttr(ind.name)}</td>
+      ${cells}
+      <td style="background:#F0F7F2;color:#1E5C3E;font-weight:700">${escAttr(avg)}</td>
+    </tr>`;
+  }).join("");
+
+  host.innerHTML=`
+    <div class="history-title">📋 전체 누적 데이터 (관리자 전용)</div>
+    <div style="font-size:12px;color:var(--muted);margin:-4px 0 10px">현재 주차 + 삭제된 주차·분기 이력 포함 · 회색은 삭제된 열</div>
+    <div class="history-scroll">
+      <table class="history-table">
+        <thead>${thead}</thead>
+        <tbody>${tbody}</tbody>
+      </table>
+    </div>`;
+
+  /* 복구 버튼 이벤트 */
+  host.querySelectorAll('[data-restore]').forEach(btn=>{
+    btn.onclick=()=>{
+      if(!isAdmin)return;
+      restoreColumn(btn.dataset.restore);
+    };
+  });
+}
 /* ---------- actions ---------- */
 function nextWeekLabel(){
   const weeks=state.columns.filter(c=>c.kind==="week");
@@ -620,12 +1006,57 @@ function nextWeekLabel(){
   }
   return "새 주차";
 }
-function addWeek(){
+function addWeek(position="after"){
   if(!isAdmin)return;
-  state.columns.push({id:uid("c_"),label:nextWeekLabel(),kind:"week"});
+  const weeks=state.columns.filter(c=>c.kind==="week");
+  let label,insertAt;
+  if(position==="before"){
+    /* 첫 번째 주차 앞 — 라벨은 첫 주차보다 한 주 전 */
+    const first=weeks[0];
+    if(first){
+      const m=first.label.match(/(\d+)\s*월\s*(\d+)\s*주/);
+      if(m){
+        let mo=+m[1],wk=+m[2]-1;
+        if(wk<1){wk=5;mo=mo<=1?12:mo-1;}
+        label=`${mo}월 ${wk}주`;
+      }else label="새 주차";
+    }else label="새 주차";
+    const firstWeekIdx=state.columns.findIndex(c=>c.kind==="week");
+    insertAt=firstWeekIdx<0?state.columns.length:firstWeekIdx;
+  }else{
+    label=nextWeekLabel();
+    insertAt=state.columns.length;
+  }
+  state.columns.splice(insertAt,0,{id:uid("c_"),label,kind:"week"});
   render();scheduleSave();
-  const scr=$(".tablescroll");scr.scrollLeft=scr.scrollWidth;
-  toast("주차 열 추가됨 · 열 이름을 확인하세요");
+  if(position==="after"){const scr=$(".tablescroll");scr.scrollLeft=scr.scrollWidth;}
+  toast(`주차 열 ${position==="before"?"앞에":"뒤에"} 추가됨 · 열 이름을 확인하세요`);
+}
+function addQuarter(position="after"){
+  if(!isAdmin)return;
+  const qs=state.columns.filter(c=>c.kind==="quarter");
+  let label,insertAt;
+  if(position==="before"){
+    const first=qs[0];
+    if(first){
+      const m=first.label.match(/'?(\d{2})\.(\d)\s*Q/);
+      if(m){let y=+m[1],q=+m[2]-1;if(q<1){q=4;y--;}label=`'${String(y).padStart(2,"0")}.${q}Q`;}
+      else label="신규 분기";
+    }else label="신규 분기";
+    const firstQIdx=state.columns.findIndex(c=>c.kind==="quarter");
+    const targetIdx=firstQIdx>=0?firstQIdx:state.columns.findIndex(c=>c.kind==="week");
+    insertAt=targetIdx>=0?targetIdx:state.columns.length;
+  }else{
+    label=nextQuarterLabel();
+    let idx=-1;
+    for(let i=0;i<state.columns.length;i++)if(state.columns[i].kind==="quarter")idx=i;
+    if(idx<0)for(let i=0;i<state.columns.length;i++)if(state.columns[i].kind==="target")idx=i;
+    if(idx<0){const wi=state.columns.findIndex(c=>c.kind==="week");idx=(wi<0?state.columns.length-1:wi-1);}
+    insertAt=idx+1;
+  }
+  state.columns.splice(insertAt,0,{id:uid("c_"),label,kind:"quarter"});
+  render();scheduleSave();
+  toast(`분기 열 ${position==="before"?"앞에":"뒤에"} 추가됨 · 열 이름을 확인하세요`);
 }
 function nextQuarterLabel(){
   const qs=state.columns.filter(c=>c.kind==="quarter");
@@ -636,22 +1067,12 @@ function nextQuarterLabel(){
   }
   return "신규 분기";
 }
-function addQuarter(){
-  if(!isAdmin)return;
-  const col={id:uid("c_"),label:nextQuarterLabel(),kind:"quarter"};
-  let idx=-1;
-  for(let i=0;i<state.columns.length;i++)if(state.columns[i].kind==="quarter")idx=i;
-  if(idx<0)for(let i=0;i<state.columns.length;i++)if(state.columns[i].kind==="target")idx=i;
-  if(idx<0){const wi=state.columns.findIndex(c=>c.kind==="week");idx=(wi<0?state.columns.length-1:wi-1);}
-  state.columns.splice(idx+1,0,col);
-  render();scheduleSave();
-  toast("분기 열 추가됨 · 열 이름을 확인하세요");
-}
-
 /* ---------- roles & lock ---------- */
 function applyRole(){
   document.body.classList.toggle("admin",isAdmin);
   document.querySelectorAll(".adminonly").forEach(el=>{el.style.display=isAdmin?"":"none";});
+  /* dropdown-wrap은 flex가 아닌 inline-block으로 표시 */
+  document.querySelectorAll(".dropdown-wrap.adminonly").forEach(el=>{el.style.display=isAdmin?"inline-block":"none";});
   $("#roleLabel").textContent=isAdmin?"관리자 모드":"사용자 모드";
   $("#adminBtn").textContent=isAdmin?"로그아웃":"관리자 로그인";
   render();
@@ -754,6 +1175,10 @@ function importSync(){
     if(!obj.columns||!obj.indicators)throw 0;
     state=obj;if(!state.values)state.values={};if(!state.meta)state.meta={};
     if(typeof state.locked!=="boolean")state.locked=false;
+    if(!state.rowLocks)state.rowLocks={};
+    if(!state.deletedColumns)state.deletedColumns=[];
+  if(!state.rowLocks)state.rowLocks={};
+  if(!state.deletedColumns)state.deletedColumns=[];
     normalizeValues();
     render();commit();applyRole();
     $("#scrim").classList.remove("show");
@@ -781,81 +1206,98 @@ function fmt(n){
   const v=Number.isInteger(n)?n:Number(n.toFixed(2));
   return v.toLocaleString("ko-KR");
 }
-/* 지표별 천 단위 스케일 여부 */
-function needsThousandScale(name){
-  return /lifeplus.*tv|plus.*tv|lifeplus.*앱|lifeplus.*app|lifeplus앱|lifeplustv|plustv/i.test(
-    name.replace(/[\s\(\)명]/g,"")
-  );
-}
+/* 천 단위 스케일은 사용하지 않음 — 항상 원본값 그대로 표시 */
+function needsThousandScale(){ return false; }
 
-function lineChartSVG(series,target,cid,useScale){
-  const sc=useScale?1000:1;
-  const sc_series=series.map(s=>({...s,val:s.val!==null?s.val/sc:null}));
-  const sc_target=target!==null?target/sc:null;
-
-  const W=460,H=176,PL=52,PR=12,PT=18,PB=30;
+function lineChartSVG(series,target,cid){
+  const W=460,H=200,PL=90,PR=16,PT=20,PB=32;
   const IW=W-PL-PR,IH=H-PT-PB;
-  const nums=sc_series.map(s=>s.val).filter(v=>v!==null);
+  const nums=series.map(s=>s.val).filter(v=>v!==null);
   if(!nums.length)return'<div class="chartempty">아직 주차별 수치가 없습니다.<br>입력표에서 값을 채우면 추이가 그려집니다.</div>';
 
-  let yMin=Math.min(...nums),yMax=Math.max(...nums);
-  const useTgt=sc_target!==null&&isFinite(sc_target)&&sc_target>0&&sc_target<=yMax*2&&sc_target>=yMin*0.4;
-  if(useTgt){yMin=Math.min(yMin,sc_target);yMax=Math.max(yMax,sc_target);}
-  if(yMin===yMax){const d=Math.abs(yMin)||1;yMin-=d*.15;yMax+=d*.15;}
-  yMin-=(yMax-yMin)*.1;yMax+=(yMax-yMin)*.08;
-
-  const sx=i=>PL+(sc_series.length<=1?IW/2:i*IW/(sc_series.length-1));
-  const sy=v=>PT+IH*(1-(v-yMin)/(yMax-yMin));
-
-  const TICKS=4;let grid="";
-  for(let t=0;t<=TICKS;t++){
-    const yy=PT+t*IH/TICKS,vv=yMax-t*(yMax-yMin)/TICKS;
-    const lbl=fmt(Math.round(vv));
-    grid+=`<line x1="${PL}" y1="${yy.toFixed(1)}" x2="${W-PR}" y2="${yy.toFixed(1)}" stroke="${t===0?"transparent":"#EDE8E0"}" stroke-width="1"/>`;
-    grid+=`<text x="${PL-6}" y="${(yy+4).toFixed(1)}" text-anchor="end" font-size="10" fill="#B0A99F" font-family="'SF Mono',Consolas,monospace">${lbl}</text>`;
+  /* Y축 nice number — 10의 배수로 딱 떨어지는 눈금 */
+  function niceMax(v){
+    if(!v||v<=0)return 10;
+    const mag=Math.pow(10,Math.floor(Math.log10(v)));
+    const steps=[1,2,2.5,5,10];
+    for(const s of steps){if(mag*s>=v)return mag*s;}
+    return mag*10;
+  }
+  function niceStep(max,ticks){
+    const raw=max/ticks;
+    const mag=Math.pow(10,Math.floor(Math.log10(raw)));
+    const steps=[1,2,2.5,5,10];
+    for(const s of steps){if(mag*s>=raw)return mag*s;}
+    return mag*10;
   }
 
-  const n=series.length,every=n<=6?1:n<=12?2:Math.ceil(n/6);
+  const dataMax=Math.max(...nums);
+  const rawMax=target&&target>dataMax?target*1.3:dataMax*1.5;
+  const TICKS=5;
+  const step=niceStep(rawMax,TICKS);
+  const safeMax=step*TICKS; /* 딱 떨어지는 최대값 */
+  const yMin=0;
+
+  const sx=i=>PL+(series.length<=1?IW/2:i*IW/(series.length-1));
+  const sy=v=>PT+IH*(1-(v-yMin)/(safeMax-yMin));
+
+  /* Y축 그리드 — step 단위 눈금, 콤마 포맷 */
+  let grid="";
+  for(let t=0;t<=TICKS;t++){
+    const yy=PT+t*IH/TICKS;
+    const vv=safeMax-t*step;
+    const lbl=fmt(Math.round(vv));
+    grid+=`<line x1="${PL}" y1="${yy.toFixed(1)}" x2="${W-PR}" y2="${yy.toFixed(1)}" stroke="${t===0?"transparent":"#EDE8E0"}" stroke-width="1"/>`;
+    grid+=`<text x="${PL-8}" y="${(yy+4).toFixed(1)}" text-anchor="end" font-size="9" fill="#ABA49B" font-family="Pretendard,\'Malgun Gothic\',sans-serif">${lbl}</text>`;
+  }
+
+  /* X축 레이블 */
+  const n=series.length,every=n<=6?1:n<=10?2:Math.ceil(n/6);
   let xl="";
   series.forEach((s,i)=>{
     if(i%every!==0&&i!==n-1)return;
-    xl+=`<text x="${sx(i).toFixed(1)}" y="${H-8}" text-anchor="middle" font-size="10" fill="#B0A99F" font-family="Malgun Gothic,sans-serif">${escAttr(s.label.replace(/\s/g,""))}</text>`;
+    xl+=`<text x="${sx(i).toFixed(1)}" y="${H-8}" text-anchor="middle" font-size="9.5" fill="#ABA49B" font-family="Pretendard,'Malgun Gothic',sans-serif">${escAttr(s.label.replace(/\s/g,""))}</text>`;
   });
 
-  const pts=sc_series.map((s,i)=>({x:sx(i),y:s.val!==null?sy(s.val):null,val:s.val,orig:series[i].val,label:s.label}));
+  /* 경로 */
+  const pts=series.map((s,i)=>({x:sx(i),y:s.val!==null?sy(s.val):null,val:s.val,label:s.label}));
   const valid=pts.filter(p=>p.y!==null);
   if(!valid.length)return'<div class="chartempty">값을 입력하면 추이가 그려집니다.</div>';
-
   let pathD="",areaD="";
   valid.forEach((p,i)=>pathD+=(i===0?"M":"L")+p.x.toFixed(1)+" "+p.y.toFixed(1)+" ");
   areaD=`M${valid[0].x.toFixed(1)} ${PT+IH} `+valid.map(p=>`L${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ")+` L${valid[valid.length-1].x.toFixed(1)} ${PT+IH} Z`;
 
+  /* 목표선 */
   let tline="";
-  if(useTgt){
-    const ty=sy(sc_target);
-    tline=`<line x1="${PL}" y1="${ty.toFixed(1)}" x2="${W-PR}" y2="${ty.toFixed(1)}" stroke="#EA6A1E" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.45"/>
-    <rect x="${PL+4}" y="${(ty-13).toFixed(1)}" width="48" height="13" rx="3" fill="#EA6A1E" opacity="0.1"/>
-    <text x="${PL+28}" y="${(ty-4).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#C9560F">목표 ${fmt(Math.round(sc_target))}</text>`;
+  if(target&&target>0){
+    const ty=sy(target);
+    if(ty>=PT&&ty<=PT+IH){
+      const tlbl=target>=1000000?(target/1000000).toFixed(1)+"M":target>=1000?(target/1000).toFixed(0)+"K":fmt(Math.round(target));
+      tline=`<line x1="${PL}" y1="${ty.toFixed(1)}" x2="${W-PR}" y2="${ty.toFixed(1)}" stroke="#EA6A1E" stroke-width="1.3" stroke-dasharray="5 3" opacity="0.5"/>
+      <text x="${PL+4}" y="${(ty-5).toFixed(1)}" font-size="9.5" font-weight="700" fill="#C9560F">목표 ${tlbl}</text>`;
+    }
   }
 
+  /* 데이터 포인트 */
   let circles="",tooltips="";
   valid.forEach(p=>{
     circles+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="#EA6A1E" stroke="#fff" stroke-width="1.8"/>`;
-    tooltips+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="12" fill="transparent"><title>${escAttr(p.label)}: ${fmt(p.orig??Math.round(p.val*sc))}</title></circle>`;
+    tooltips+=`<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="14" fill="transparent"><title>${escAttr(p.label)}: ${fmt(p.val)}</title></circle>`;
   });
 
+  /* 최신값 배지 — 원본값 콤마 포맷 */
   const lp=valid[valid.length-1];
   const lval=fmt(Math.round(lp.val));
-  const lblW=Math.max(lval.length*7+14,36);
+  const lblW=Math.max(lval.length*7+16,40);
   const lblX=Math.min(Math.max(lp.x,PL+lblW/2),W-PR-lblW/2);
-  const lblY=lp.y-14<PT+6?lp.y+20:lp.y-13;
-  const lastLbl=`<rect x="${(lblX-lblW/2).toFixed(1)}" y="${(lblY-12).toFixed(1)}" width="${lblW}" height="16" rx="4" fill="#1C1B18" opacity="0.82"/>
-  <text x="${lblX.toFixed(1)}" y="${lblY.toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FFFFFF" font-family="'SF Mono',Consolas,monospace">${lval}</text>`;
+  const lblY=lp.y-16<PT+4?lp.y+22:lp.y-14;
+  const lastLbl=`<rect x="${(lblX-lblW/2).toFixed(1)}" y="${(lblY-13).toFixed(1)}" width="${lblW}" height="17" rx="4" fill="#1C1B18" opacity="0.85"/>
+  <text x="${lblX.toFixed(1)}" y="${(lblY+1).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FFFFFF" font-family="Pretendard,'Malgun Gothic',sans-serif">${lval}</text>`;
 
   return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
   <defs>
     <linearGradient id="ag${cid}" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#EA6A1E" stop-opacity="0.14"/>
+      <stop offset="0%" stop-color="#EA6A1E" stop-opacity="0.12"/>
       <stop offset="100%" stop-color="#EA6A1E" stop-opacity="0.01"/>
     </linearGradient>
     <clipPath id="cp${cid}"><rect x="${PL}" y="${PT}" width="${IW}" height="${IH+1}"/></clipPath>
@@ -883,28 +1325,26 @@ function renderCharts(){
     const vals=state.values[ind.id]||{};
     const series=weeks.map(c=>({label:c.label,val:parseNum(vals[c.id])}));
     const target=targetCol?parseNum(vals[targetCol.id]):null;
-    const useScale=needsThousandScale(ind.name);
 
     let latest=null,prev=null;
     for(let i=series.length-1;i>=0;i--){
       if(series[i].val!==null){if(!latest)latest=series[i];else if(!prev){prev=series[i];break;}}
     }
 
-    const unitLabel=useScale?'<span style="font-size:11px;color:var(--muted);font-weight:500;margin-left:6px">(단위: 천 명)</span>':""  ;
-    const dispVal=v=>useScale?fmt(Math.round(v/1000)):fmt(v);
+    /* 헤더 — 원본값 콤마 포맷 그대로 */
     const latestHTML=latest
-      ?`<div class="clatest"><span class="cval">${dispVal(latest.val)}</span>${useScale?'<span class="cunit">천 명</span>':''}<span class="cwk">${escAttr(latest.label)} 기준</span></div>`
+      ?`<div class="clatest"><span class="cval">${fmt(latest.val)}</span><span class="cwk">${escAttr(latest.label)} 기준</span></div>`
       :'<div class="clatest"><span class="cval" style="color:#CBC6BC">–</span><span class="cwk">미입력</span></div>';
 
     let deltaHTML="";
     if(latest&&prev){
-      const raw=latest.val-prev.val;
-      const d=useScale?Math.round(raw/1000):raw;
+      const d=latest.val-prev.val;
       const cls=d>0?"up":d<0?"dn":"flat",arrow=d>0?"▲":d<0?"▼":"–";
-      const pct=prev.val?((raw/Math.abs(prev.val))*100).toFixed(1):null;
-      deltaHTML=`<span class="delta ${cls}">${arrow} ${fmt(Math.abs(d))}${useScale?"천":""}${pct?` (${raw>0?"+":""}${pct}%)`:""}</span>`;
+      const pct=prev.val?((d/Math.abs(prev.val))*100).toFixed(1):null;
+      deltaHTML=`<span class="delta ${cls}">${arrow} ${fmt(Math.abs(Math.round(d)))}${pct?` (${d>0?"+":""}${pct}%)`:""}</span>`;
     }
 
+    /* 우측 데이터 테이블 — 원본값 */
     let rows='<div class="chart-section-title">전체 데이터</div>';
     state.columns.filter(c=>c.kind!=="week").forEach(c=>{
       const raw=vals[c.id]||"";
@@ -923,11 +1363,11 @@ function renderCharts(){
     const card=document.createElement("div");card.className="chartcard";
     card.innerHTML=
       `<div class="charthead"><div class="charthead-left">
-        <span class="ctitle">${escAttr(ind.name||"(지표명 없음)")}${unitLabel}</span>
+        <span class="ctitle">${escAttr(ind.name||"(지표명 없음)")}</span>
         <div class="cstat">${latestHTML}${deltaHTML}</div>
       </div></div>
       <div class="chartbody">
-        <div class="chartplot">${lineChartSVG(series,target,ind.id,useScale)}</div>
+        <div class="chartplot">${lineChartSVG(series,target,ind.id)}</div>
         <div class="charttable">${rows}</div>
       </div>`;
     host.appendChild(card);
@@ -942,6 +1382,7 @@ function showInput(){
 }
 function showChart(){
   renderCharts();
+  renderAvgSection();
   $("#toolbar").classList.add("hidden");$("#tablecard").classList.add("hidden");
   $("#chartview").classList.remove("hidden");
   $("#tabChart").classList.add("active");$("#tabInput").classList.remove("active");
@@ -949,9 +1390,18 @@ function showChart(){
 }
 
 /* ---------- YouTube 구독자 자동 가져오기 ---------- */
+function getTodayWeekLabel(){
+  const d=new Date();
+  return`${d.getMonth()+1}월 ${Math.ceil(d.getDate()/7)}주`;
+}
 function getCurrentWeekColId(){
-  const weeks=state.columns.filter(c=>c.kind==="week");
-  return weeks.length?weeks[weeks.length-1]:null;
+  const todayLabel=getTodayWeekLabel();
+  const normalize=s=>String(s).replace(/\s/g,"");
+  /* 오늘 날짜 기준 주차 라벨과 일치하는 열 */
+  const matched=state.columns.find(c=>c.kind==="week"&&normalize(c.label)===normalize(todayLabel));
+  if(matched)return matched;
+  /* 일치하는 열이 없으면 null 반환 — 기입하지 않음 */
+  return null;
 }
 function isSunday(){return new Date().getDay()===0;}
 function getYtLastFetchKey(){
@@ -1005,6 +1455,12 @@ async function autoFetchYouTubeSubscribers(force=false){
 }
 async function forceYtFetch(){
   /* 관리자 전용 수동 강제 실행 */
+  const col=getCurrentWeekColId();
+  if(!col){
+    const today=getTodayWeekLabel();
+    toast(`오늘(${today}) 주차 열이 없습니다. 먼저 주차를 추가해 주세요.`);
+    return;
+  }
   toast("YouTube 구독자 수 가져오는 중…");
   await autoFetchYouTubeSubscribers(true);
 }
@@ -1125,6 +1581,8 @@ async function init(){
   state=loaded||clone(DEFAULT);
   if(!state.values)state.values={};
   if(typeof state.locked!=="boolean")state.locked=false;
+  if(!state.rowLocks)state.rowLocks={};
+  if(!state.deletedColumns)state.deletedColumns=[];
   if(!state.meta)state.meta={lastEditedBy:"",lastEditedAt:null};
   normalizeValues();
   $("#me").value=state.meta.lastEditedBy||"";
@@ -1133,8 +1591,19 @@ async function init(){
   if(!loaded)commit();
 
   $("#copyBtn").onclick=copyTable;
-  $("#addWeekBtn").onclick=addWeek;
-  $("#addQuarterBtn").onclick=addQuarter;
+  $("#addWeekBtn").onclick=e=>{e.stopPropagation();$("#addWeekMenu").classList.toggle("open");$("#addQuarterMenu").classList.remove("open");};
+  $("#addQuarterBtn").onclick=e=>{e.stopPropagation();$("#addQuarterMenu").classList.toggle("open");$("#addWeekMenu").classList.remove("open");};
+  document.querySelectorAll("[data-action]").forEach(el=>{
+    el.onclick=e=>{
+      e.stopPropagation();
+      const [type,pos]=el.dataset.action.split("-");
+      if(type==="week")addWeek(pos);
+      else if(type==="quarter")addQuarter(pos);
+      document.querySelectorAll(".dropdown-menu").forEach(m=>m.classList.remove("open"));
+    };
+  });
+  /* 외부 클릭 시 드롭다운 닫기 */
+  document.addEventListener("click",()=>document.querySelectorAll(".dropdown-menu").forEach(m=>m.classList.remove("open")));
   $("#lockBtn").onclick=toggleLock;
   $("#syncBtn").onclick=openSync;
   $("#closeModal").onclick=()=>$("#scrim").classList.remove("show");
@@ -1143,12 +1612,6 @@ async function init(){
   $("#copyCodeBtn").onclick=async()=>{
     try{await navigator.clipboard.writeText($("#syncText").value);toast("공유코드 복사됨");}
     catch(e){$("#syncText").select();document.execCommand("copy");toast("공유코드 복사됨");}
-  };
-  $("#resetBtn").onclick=()=>{
-    if(!isAdmin)return;
-    if(confirm("모든 입력값을 초기 양식으로 되돌립니다. 계속할까요?")){
-      state=clone(DEFAULT);render();commit();applyRole();toast("초기화되었습니다");
-    }
   };
   $("#me").onchange=()=>{scheduleSave();};
   $("#tabInput").onclick=showInput;
